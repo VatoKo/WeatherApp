@@ -16,9 +16,13 @@ class ForecastConfiguratorImpl: ForecastConfigurator {
     func configure(_ controller: ForecastController) {
         let router: ForecastRouter = ForecastRouterImpl(controller)
         
+        let forecastGateway: ForecastGateway = ApiForecastGateway()
+        let forecastUseCase: ForecastUseCase = ForecastUseCaseImpl(gateway: forecastGateway)
+        
         let presenter: ForecastPresenter = ForecastPresenterImpl(
             view: controller,
-            router: router
+            router: router,
+            forecastUseCase: forecastUseCase
         )
         
         controller.presenter = presenter

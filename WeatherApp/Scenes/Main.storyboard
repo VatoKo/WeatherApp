@@ -84,10 +84,29 @@
                     <view key="view" contentMode="scaleToFill" id="Pg8-Cg-eTx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A7w-FL-ycZ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="8kw-37-hz7" id="hcP-QV-eyp"/>
+                                    <outlet property="delegate" destination="8kw-37-hz7" id="RRR-gE-jhJ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="OzS-y8-38E"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OzS-y8-38E" firstAttribute="bottom" secondItem="A7w-FL-ycZ" secondAttribute="bottom" id="BvG-5H-DCk"/>
+                            <constraint firstItem="A7w-FL-ycZ" firstAttribute="leading" secondItem="OzS-y8-38E" secondAttribute="leading" id="LWl-nP-UWZ"/>
+                            <constraint firstItem="A7w-FL-ycZ" firstAttribute="top" secondItem="OzS-y8-38E" secondAttribute="top" id="cqo-A5-fRU"/>
+                            <constraint firstItem="OzS-y8-38E" firstAttribute="trailing" secondItem="A7w-FL-ycZ" secondAttribute="trailing" id="eeQ-PE-aF1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Forecast" id="Wgb-9V-9yG"/>
+                    <connections>
+                        <outlet property="tableView" destination="A7w-FL-ycZ" id="utv-AW-fon"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MIR-5J-nug" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
