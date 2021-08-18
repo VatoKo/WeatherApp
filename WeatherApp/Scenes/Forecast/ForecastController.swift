@@ -9,6 +9,7 @@ import UIKit
 
 class ForecastController: UIViewController {
 
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var tableView: UITableView!
     
     var presenter: ForecastPresenter!
@@ -22,13 +23,19 @@ extension ForecastController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ForecastConfiguratorImpl().configure(self)
+        tableView.estimatedSectionHeaderHeight = 20
         tableView.register(UINib(nibName: "ForecastCell", bundle: nil), forCellReuseIdentifier: ForecastCell.reuseIdentifier)
+        tableView.register(UINib(nibName: "TitleHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: TitleHeaderView.reuseIdentifier)
         presenter.viewDidLoad()
     }
     
 }
 
 extension ForecastController: ForecastView {
+    
+    func setLoader(_ isLoading: Bool) {
+        isLoading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+    }
     
     func reloadList() {
         tableView.reloadData()
@@ -47,8 +54,16 @@ extension ForecastController: UITableViewDelegate {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return presenter.titleForHeader(in: section)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let identifier = presenter.headerIdentifier(in: section)
+        let dequeued = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier)
+        let header = dequeued as! ConfigurableCell
+        presenter.configure(header: header, in: section)
+        return dequeued
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
 }

@@ -30,7 +30,6 @@
         <!--Today-->
         <scene sceneID="oeG-Cb-UK8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pM9-SS-vGx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="0bl-Vf-k19" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Today" image="sun.min" catalog="system" id="uO6-Ck-vxY"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ehY-7W-90i">
@@ -41,6 +40,7 @@
                         <segue destination="iZ5-gy-GaJ" kind="relationship" relationship="rootViewController" id="H4q-9B-Uhe"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pM9-SS-vGx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="622" y="-162"/>
         </scene>
@@ -93,18 +93,24 @@
                                     <outlet property="delegate" destination="8kw-37-hz7" id="RRR-gE-jhJ"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="qsK-Si-R90">
+                                <rect key="frame" x="197" y="440.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OzS-y8-38E"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="qsK-Si-R90" firstAttribute="centerY" secondItem="OzS-y8-38E" secondAttribute="centerY" id="5a7-zL-6Gj"/>
                             <constraint firstItem="OzS-y8-38E" firstAttribute="bottom" secondItem="A7w-FL-ycZ" secondAttribute="bottom" id="BvG-5H-DCk"/>
                             <constraint firstItem="A7w-FL-ycZ" firstAttribute="leading" secondItem="OzS-y8-38E" secondAttribute="leading" id="LWl-nP-UWZ"/>
+                            <constraint firstItem="qsK-Si-R90" firstAttribute="centerX" secondItem="OzS-y8-38E" secondAttribute="centerX" id="YGa-ic-Ukf"/>
                             <constraint firstItem="A7w-FL-ycZ" firstAttribute="top" secondItem="OzS-y8-38E" secondAttribute="top" id="cqo-A5-fRU"/>
                             <constraint firstItem="OzS-y8-38E" firstAttribute="trailing" secondItem="A7w-FL-ycZ" secondAttribute="trailing" id="eeQ-PE-aF1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Forecast" id="Wgb-9V-9yG"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="qsK-Si-R90" id="UTA-ES-J82"/>
                         <outlet property="tableView" destination="A7w-FL-ycZ" id="utv-AW-fon"/>
                     </connections>
                 </viewController>

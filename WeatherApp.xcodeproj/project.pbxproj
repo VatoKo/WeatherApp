@@ -29,6 +29,9 @@
 		1191C5F226CBE07400FD57FB /* ForecastEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C5F126CBE07400FD57FB /* ForecastEntity.swift */; };
 		1191C5F626CBE10100FD57FB /* ForecastGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C5F526CBE10100FD57FB /* ForecastGateway.swift */; };
 		1191C5F926CBE27F00FD57FB /* ForecastUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C5F826CBE27F00FD57FB /* ForecastUseCase.swift */; };
+		1191C60D26CD459A00FD57FB /* TitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C60C26CD459A00FD57FB /* TitleHeaderView.swift */; };
+		1191C61126CD45A900FD57FB /* TitleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1191C61026CD45A900FD57FB /* TitleHeaderView.xib */; };
+		1191C61426CD47A500FD57FB /* TitleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C61326CD47A500FD57FB /* TitleHeaderViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		1191C5F126CBE07400FD57FB /* ForecastEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastEntity.swift; sourceTree = "<group>"; };
 		1191C5F526CBE10100FD57FB /* ForecastGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastGateway.swift; sourceTree = "<group>"; };
 		1191C5F826CBE27F00FD57FB /* ForecastUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastUseCase.swift; sourceTree = "<group>"; };
+		1191C60C26CD459A00FD57FB /* TitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderView.swift; sourceTree = "<group>"; };
+		1191C61026CD45A900FD57FB /* TitleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleHeaderView.xib; sourceTree = "<group>"; };
+		1191C61326CD47A500FD57FB /* TitleHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +180,7 @@
 		1191C5D826CBD67800FD57FB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1191C60B26CD457400FD57FB /* TitleHeader */,
 				1191C5DF26CBD69200FD57FB /* ForecastCell */,
 			);
 			path = Cells;
@@ -192,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				1191C5E326CBD94300FD57FB /* ForecastCellModel.swift */,
+				1191C61326CD47A500FD57FB /* TitleHeaderViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -233,6 +241,15 @@
 			children = (
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1191C60B26CD457400FD57FB /* TitleHeader */ = {
+			isa = PBXGroup;
+			children = (
+				1191C60C26CD459A00FD57FB /* TitleHeaderView.swift */,
+				1191C61026CD45A900FD57FB /* TitleHeaderView.xib */,
+			);
+			path = TitleHeader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +312,7 @@
 				1191C5DC26CBD68B00FD57FB /* ForecastCell.xib in Resources */,
 				1191C5D126CBC3ED00FD57FB /* Main.storyboard in Resources */,
 				1191C5A826CBC02600FD57FB /* LaunchScreen.storyboard in Resources */,
+				1191C61126CD45A900FD57FB /* TitleHeaderView.xib in Resources */,
 				1191C5A526CBC02600FD57FB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,11 +330,13 @@
 				1191C5F226CBE07400FD57FB /* ForecastEntity.swift in Sources */,
 				1191C5F926CBE27F00FD57FB /* ForecastUseCase.swift in Sources */,
 				1191C5CA26CBC3B500FD57FB /* ForecastPresenter.swift in Sources */,
+				1191C60D26CD459A00FD57FB /* TitleHeaderView.swift in Sources */,
 				1191C5DB26CBD68B00FD57FB /* ForecastCell.swift in Sources */,
 				1191C5E426CBD94300FD57FB /* ForecastCellModel.swift in Sources */,
 				1191C5E726CBD99F00FD57FB /* Reusable.swift in Sources */,
 				1191C5C026CBC3AB00FD57FB /* CurrentWeatherPresenter.swift in Sources */,
 				1191C5EB26CBDF8200FD57FB /* Fetcher.swift in Sources */,
+				1191C61426CD47A500FD57FB /* TitleHeaderViewModel.swift in Sources */,
 				1191C5C126CBC3AB00FD57FB /* CurrentWeatherRouter.swift in Sources */,
 				1191C5CD26CBC3B500FD57FB /* ForecastConfigurator.swift in Sources */,
 				1191C59C26CBC02000FD57FB /* AppDelegate.swift in Sources */,

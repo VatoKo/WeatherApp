@@ -17,6 +17,5 @@ extension Reusable where Self: UIView {
     }
 }
 
-extension UITableViewCell: Reusable {
-    
-}
+extension UITableViewCell: Reusable {}
+extension UITableViewHeaderFooterView: Reusable {}

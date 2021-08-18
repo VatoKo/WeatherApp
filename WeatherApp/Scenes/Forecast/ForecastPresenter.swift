@@ -8,11 +8,12 @@
 import Foundation
 
 struct SectionModel {
-    let title: String
-    let cells: [CellModel]
+    let headerModel: CellModel
+    let cellModels: [CellModel]
 }
 
 protocol ForecastView: AnyObject {
+    func setLoader(_ isLoading: Bool)
     func reloadList()
 }
 
@@ -20,7 +21,8 @@ protocol ForecastPresenter {
     var numberOfSections: Int { get }
     func numberOfRows(in section: Int) -> Int
     func cellIdentifier(at indexPath: IndexPath) -> String
-    func titleForHeader(in section: Int) -> String
+    func headerIdentifier(in section: Int) -> String
+    func configure(header: ConfigurableCell, in section: Int)
     func configure(cell: ConfigurableCell, at indexPath: IndexPath)
     func viewDidLoad()
 }
@@ -41,9 +43,11 @@ class ForecastPresenterImpl: ForecastPresenter {
     }
     
     func viewDidLoad() {
+        view?.setLoader(true)
         forecastUseCase.getForecast(for: 41.715137, and: 44.827095) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
+                self.view?.setLoader(false)
                 switch result {
                 case .success(let forecast):
                     self.buildDataSource(with: forecast)
@@ -70,7 +74,12 @@ class ForecastPresenterImpl: ForecastPresenter {
         }
         
         tableDataSource = sections.sorted(by: { $0.0 < $1.0 })
-                                  .map { SectionModel(title: convert(dateString: $0.key, with: "yyyy-MM-dd", to: "EEEE"), cells: $0.value) }
+                                  .map {
+                                    SectionModel(
+                                        headerModel: TitleHeaderViewModel(title: convert(dateString: $0.key, with: "yyyy-MM-dd", to: "EEEE")),
+                                        cellModels: $0.value
+                                    )
+                                  }
         view?.reloadList()
     }
     
@@ -79,19 +88,24 @@ class ForecastPresenterImpl: ForecastPresenter {
     }
     
     func numberOfRows(in section: Int) -> Int {
-        return tableDataSource[section].cells.count
+        return tableDataSource[section].cellModels.count
     }
     
     func cellIdentifier(at indexPath: IndexPath) -> String {
-        return tableDataSource[indexPath.section].cells[indexPath.row].cellIdentifier
+        return tableDataSource[indexPath.section].cellModels[indexPath.row].cellIdentifier
     }
     
-    func titleForHeader(in section: Int) -> String {
-        return tableDataSource[section].title
+    func headerIdentifier(in section: Int) -> String {
+        return tableDataSource[section].headerModel.cellIdentifier
+    }
+    
+    func configure(header: ConfigurableCell, in section: Int) {
+        let model = tableDataSource[section].headerModel
+        header.configure(with: model)
     }
     
     func configure(cell: ConfigurableCell, at indexPath: IndexPath) {
-        let model = tableDataSource[indexPath.section].cells[indexPath.row]
+        let model = tableDataSource[indexPath.section].cellModels[indexPath.row]
         cell.configure(with: model)
     }
 }
