@@ -15,6 +15,7 @@ struct SectionModel {
 protocol ForecastView: AnyObject {
     func setLoader(_ isLoading: Bool)
     func reloadList()
+    func setPageTitle(_ title: String)
 }
 
 protocol ForecastPresenter {
@@ -25,6 +26,8 @@ protocol ForecastPresenter {
     func configure(header: ConfigurableCell, in section: Int)
     func configure(cell: ConfigurableCell, at indexPath: IndexPath)
     func viewDidLoad()
+    func didUpdateLocation(latitude: Double, longitude: Double)
+    func didFailToUpdateLocation(error: Error)
 }
 
 class ForecastPresenterImpl: ForecastPresenter {
@@ -43,8 +46,12 @@ class ForecastPresenterImpl: ForecastPresenter {
     }
     
     func viewDidLoad() {
+
+    }
+    
+    private func fetchWeatherForecastData(for latitude: Double, and longitude: Double) {
         view?.setLoader(true)
-        forecastUseCase.getForecast(for: 41.715137, and: 44.827095) { [weak self] result in
+        forecastUseCase.getForecast(for: latitude, and: longitude) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.view?.setLoader(false)
@@ -76,12 +83,18 @@ class ForecastPresenterImpl: ForecastPresenter {
         tableDataSource = sections.sorted(by: { $0.0 < $1.0 })
                                   .map {
                                     SectionModel(
-                                        headerModel: TitleHeaderViewModel(title: convert(dateString: $0.key, with: "yyyy-MM-dd", to: "EEEE")),
+                                        headerModel: TitleHeaderViewModel(title: convert(dateString: $0.key, with: "yyyy-MM-dd", to: "EEEE").uppercased()),
                                         cellModels: $0.value
                                     )
                                   }
+        view?.setPageTitle(result.city.name)
         view?.reloadList()
     }
+    
+}
+
+// MARK: List Configuration
+extension ForecastPresenterImpl {
     
     var numberOfSections: Int {
         return tableDataSource.count
@@ -108,6 +121,7 @@ class ForecastPresenterImpl: ForecastPresenter {
         let model = tableDataSource[indexPath.section].cellModels[indexPath.row]
         cell.configure(with: model)
     }
+    
 }
 
 // MARK: Date Conversion Helper Methods
@@ -139,6 +153,19 @@ extension ForecastPresenterImpl {
         let newDateFormatter = DateFormatter()
         newDateFormatter.dateFormat = newFormat
         return newDateFormatter.string(from: date)
+    }
+    
+}
+
+// MARK: Location Update
+extension ForecastPresenterImpl {
+    
+    func didUpdateLocation(latitude: Double, longitude: Double) {
+        fetchWeatherForecastData(for: latitude, and: longitude)
+    }
+    
+    func didFailToUpdateLocation(error: Error) {
+        print("Location update failed: ", error.localizedDescription)
     }
     
 }
