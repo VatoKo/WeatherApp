@@ -18,6 +18,7 @@ protocol CurrentWeatherPresenter {
     func viewDidLoad()
     func didUpdateLocation(latitude: Double, longitude: Double)
     func didFailToUpdateLocation(error: Error)
+    func didTapShare()
 }
 
 class CurrentWeatherPresenterImpl: CurrentWeatherPresenter {
@@ -25,8 +26,12 @@ class CurrentWeatherPresenterImpl: CurrentWeatherPresenter {
     private weak var view: CurrentWeatherView?
     private var router: CurrentWeatherRouter
     
+    // MARK: Use cases
     private let currentWeatherUseCase: CurrentWeatherUseCase
     private let weatherIconUseCase: WeatherIconUseCase
+    
+    // MARK: Entities
+    private var weatherData: WeatherResult?
     
     init(
         view: CurrentWeatherView,
@@ -63,6 +68,7 @@ class CurrentWeatherPresenterImpl: CurrentWeatherPresenter {
     
 }
 
+// MARK: Location Updates
 extension CurrentWeatherPresenterImpl {
     
     func didUpdateLocation(latitude: Double, longitude: Double) {
@@ -73,6 +79,7 @@ extension CurrentWeatherPresenterImpl {
                 self.view?.setLoader(false)
                 switch result {
                 case .success(let weatherData):
+                    self.weatherData = weatherData
                     self.configureView(with: weatherData)
                 case .failure(let error):
                     print("Failed to fetch weather data: ", error.localizedDescription)
@@ -83,6 +90,17 @@ extension CurrentWeatherPresenterImpl {
     
     func didFailToUpdateLocation(error: Error) {
         print("Failed to get location: ", error.localizedDescription)
+    }
+    
+}
+
+// MARK: Touch Events
+extension CurrentWeatherPresenterImpl {
+    
+    func didTapShare() {
+        guard let weatherData = weatherData else { return }
+        let sheetText = "\(Int(weatherData.main.temp))°C | \(weatherData.weather[0].main ?? "N/A"), \(weatherData.name ?? "N/A") by WeatherApp"
+        router.showShareSheet(with: sheetText)
     }
     
 }

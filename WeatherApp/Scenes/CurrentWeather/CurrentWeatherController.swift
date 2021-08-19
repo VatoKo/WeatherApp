@@ -53,6 +53,16 @@ extension CurrentWeatherController: CurrentWeatherView {
     
 }
 
+// MARK: Touch Events
+extension CurrentWeatherController {
+    
+    @IBAction
+    private func didTapShare() {
+        presenter.didTapShare()
+    }
+    
+}
+
 // MARK: Location Access
 extension CurrentWeatherController: LocationAccessible {
     

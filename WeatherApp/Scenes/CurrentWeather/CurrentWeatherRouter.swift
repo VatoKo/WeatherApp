@@ -5,10 +5,10 @@
 //  Created by Vakhtang Kostava on 17.08.21.
 //
 
-import Foundation
+import UIKit
 
 protocol CurrentWeatherRouter {
-    
+    func showShareSheet(with text: String)
 }
 
 class CurrentWeatherRouterImpl: CurrentWeatherRouter {
@@ -17,6 +17,11 @@ class CurrentWeatherRouterImpl: CurrentWeatherRouter {
     
     init(_ controller: CurrentWeatherController?) {
         self.controller = controller
+    }
+    
+    func showShareSheet(with text: String) {
+        let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+        controller?.present(activityViewController, animated: true, completion: nil)
     }
     
 }
