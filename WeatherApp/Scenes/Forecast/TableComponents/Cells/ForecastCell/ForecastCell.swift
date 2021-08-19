@@ -28,13 +28,15 @@ extension ForecastCell: ConfigurableCell {
             dateLabel.text = model.date
             weatherDescriptionLabel.text = model.weatherDescription
             degreeLabel.text = "\(model.degree)°"
-            DispatchQueue.global().async {
-                if let iconId = model.iconId,
-                   let url = URL(string: "https://openweathermap.org/img/wn/\(iconId)@2x.png"),
-                   let imageData = try? Data(contentsOf: url)
-                {
+            if let iconId = model.iconId {
+                WeatherIconUseCaseImpl(gateway: ApiWeatherIconGateway()).getIcon(with: iconId) { [weak self] (result) in
+                    guard let self = self else { return }
                     DispatchQueue.main.async {
-                        self.iconImage.image = UIImage(data: imageData)
+                        switch result {
+                        case .success(let imageData):
+                            self.iconImage.image = UIImage(data: imageData)
+                        case .failure: break
+                        }
                     }
                 }
             }

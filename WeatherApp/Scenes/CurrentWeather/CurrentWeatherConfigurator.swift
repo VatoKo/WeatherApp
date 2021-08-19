@@ -16,9 +16,17 @@ class CurrentWeatherConfiguratorImpl: CurrentWeatherConfigurator {
     func configure(_ controller: CurrentWeatherController) {
         let router: CurrentWeatherRouter = CurrentWeatherRouterImpl(controller)
         
+        let currentWeatherGateway: CurrentWeatherGateway = ApiCurrentWeatherGateway()
+        let currentWeatherUseCase: CurrentWeatherUseCase = CurrentWeatherUseCaseImpl(gateway: currentWeatherGateway)
+        
+        let weatherIconGateway: WeatherIconGateway = ApiWeatherIconGateway()
+        let weatherIconUseCase: WeatherIconUseCase = WeatherIconUseCaseImpl(gateway: weatherIconGateway)
+        
         let presenter: CurrentWeatherPresenter = CurrentWeatherPresenterImpl(
             view: controller,
-            router: router
+            router: router,
+            currentWeatherUseCase: currentWeatherUseCase,
+            weatherIconUseCase: weatherIconUseCase
         )
         
         controller.presenter = presenter
