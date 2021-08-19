@@ -38,6 +38,7 @@
 		1191C62F26CE813900FD57FB /* CurrentWeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C62E26CE813900FD57FB /* CurrentWeatherUseCase.swift */; };
 		1191C63226CE873A00FD57FB /* WeatherIconGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C63126CE873A00FD57FB /* WeatherIconGateway.swift */; };
 		1191C63526CE880800FD57FB /* WeatherIconUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C63426CE880800FD57FB /* WeatherIconUseCase.swift */; };
+		1191C63826CEC1CE00FD57FB /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C63726CEC1CE00FD57FB /* DoubleExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		1191C62E26CE813900FD57FB /* CurrentWeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherUseCase.swift; sourceTree = "<group>"; };
 		1191C63126CE873A00FD57FB /* WeatherIconGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconGateway.swift; sourceTree = "<group>"; };
 		1191C63426CE880800FD57FB /* WeatherIconUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconUseCase.swift; sourceTree = "<group>"; };
+		1191C63726CEC1CE00FD57FB /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 		1191C5FB26CC0BC600FD57FB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1191C63726CEC1CE00FD57FB /* DoubleExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				1191C62F26CE813900FD57FB /* CurrentWeatherUseCase.swift in Sources */,
 				1191C59C26CBC02000FD57FB /* AppDelegate.swift in Sources */,
 				1191C5C226CBC3AB00FD57FB /* CurrentWeatherController.swift in Sources */,
+				1191C63826CEC1CE00FD57FB /* DoubleExtensions.swift in Sources */,
 				1191C59E26CBC02000FD57FB /* SceneDelegate.swift in Sources */,
 				1191C5F626CBE10100FD57FB /* ForecastGateway.swift in Sources */,
 				1191C5CB26CBC3B500FD57FB /* ForecastRouter.swift in Sources */,

@@ -7,11 +7,21 @@
 
 import UIKit
 
+struct CurrentWeatherViewModel {
+    let locationName: String
+    let temperatureDescription: String
+    let cloudPercentage: String
+    let humidity: String
+    let pressure: String
+    let windSpeed: String
+    let windDirection: String
+}
+
 protocol CurrentWeatherView: AnyObject {
+    func setContentVisibility(isHidden: Bool)
     func setLoader(_ isLoading: Bool)
     func setWeatherIcon(image: UIImage?)
-    func setLocationName(_ name: String)
-    func setTemperatureDescription(_ description: String)
+    func configureView(with model: CurrentWeatherViewModel)
 }
 
 protocol CurrentWeatherPresenter {
@@ -46,7 +56,7 @@ class CurrentWeatherPresenterImpl: CurrentWeatherPresenter {
     }
     
     func viewDidLoad() {
-        
+        view?.setContentVisibility(isHidden: true)
     }
     
     private func configureView(with weatherData: WeatherResult) {
@@ -62,8 +72,17 @@ class CurrentWeatherPresenterImpl: CurrentWeatherPresenter {
                 }
             }
         }
-        self.view?.setLocationName(weatherData.name ?? "N/A")
-        self.view?.setTemperatureDescription("\(Int(weatherData.main.temp))°C | \(weatherData.weather[0].main ?? "N/A")")
+        view?.configureView(
+            with: CurrentWeatherViewModel(
+                locationName: weatherData.name ?? "-",
+                temperatureDescription: "\(Int(weatherData.main.temp))°C | \(weatherData.weather[0].main ?? "-")",
+                cloudPercentage: weatherData.clouds.all != nil ? "\(weatherData.clouds.all!) %" : "-",
+                humidity: "\(weatherData.main.humidity) mm",
+                pressure: "\(weatherData.main.pressure) hPa",
+                windSpeed: weatherData.wind.speed != nil ? "\(weatherData.wind.speed!) km/h" : "-",
+                windDirection: weatherData.wind.deg != nil ? weatherData.wind.deg!.toCompassDirection : "-"
+            )
+        )
     }
     
 }
@@ -81,6 +100,7 @@ extension CurrentWeatherPresenterImpl {
                 case .success(let weatherData):
                     self.weatherData = weatherData
                     self.configureView(with: weatherData)
+                    self.view?.setContentVisibility(isHidden: false)
                 case .failure(let error):
                     print("Failed to fetch weather data: ", error.localizedDescription)
                 }
@@ -99,7 +119,7 @@ extension CurrentWeatherPresenterImpl {
     
     func didTapShare() {
         guard let weatherData = weatherData else { return }
-        let sheetText = "\(Int(weatherData.main.temp))°C | \(weatherData.weather[0].main ?? "N/A"), \(weatherData.name ?? "N/A") by WeatherApp"
+        let sheetText = "\(Int(weatherData.main.temp))°C | \(weatherData.weather[0].main ?? "-"), \(weatherData.name ?? "-") by WeatherApp"
         router.showShareSheet(with: sheetText)
     }
     

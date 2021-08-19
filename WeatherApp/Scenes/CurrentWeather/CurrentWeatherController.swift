@@ -11,9 +11,15 @@ import CoreLocation
 class CurrentWeatherController: UIViewController {
 
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var contentContainerStack: UIStackView!
     @IBOutlet private weak var weatherIcon: UIImageView!
     @IBOutlet private weak var locationNameLabel: UILabel!
     @IBOutlet private weak var temperatureDescriptionLabel: UILabel!
+    @IBOutlet private weak var cloudPercentageLabel: UILabel!
+    @IBOutlet private weak var humidityLabel: UILabel!
+    @IBOutlet private weak var pressureLabel: UILabel!
+    @IBOutlet private weak var windSpeedLabel: UILabel!
+    @IBOutlet private weak var windDirectionLabel: UILabel!
     
     var locationManager: CLLocationManager = .init()
     
@@ -35,6 +41,10 @@ extension CurrentWeatherController {
 
 extension CurrentWeatherController: CurrentWeatherView {
     
+    func setContentVisibility(isHidden: Bool) {
+        contentContainerStack.isHidden = isHidden
+    }
+    
     func setLoader(_ isLoading: Bool) {
         isLoading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
     }
@@ -43,12 +53,14 @@ extension CurrentWeatherController: CurrentWeatherView {
         weatherIcon.image = image
     }
     
-    func setLocationName(_ name: String) {
-        locationNameLabel.text = name
-    }
-    
-    func setTemperatureDescription(_ description: String) {
-        temperatureDescriptionLabel.text = description
+    func configureView(with model: CurrentWeatherViewModel) {
+        locationNameLabel.text = model.locationName
+        temperatureDescriptionLabel.text = model.temperatureDescription
+        cloudPercentageLabel.text = model.cloudPercentage
+        humidityLabel.text = model.humidity
+        pressureLabel.text = model.pressure
+        windSpeedLabel.text = model.windSpeed
+        windDirectionLabel.text = model.windDirection
     }
     
 }
