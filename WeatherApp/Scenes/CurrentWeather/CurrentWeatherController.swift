@@ -23,6 +23,14 @@ class CurrentWeatherController: UIViewController {
     @IBOutlet private weak var topSeparatorLine: UIView!
     @IBOutlet private weak var bottomSeparatorLine: UIView!
     
+    private let rainbowLineColors: [UIColor] = [.purple, .orange, .green, .blue, .yellow, .red]
+    
+    private lazy var rainbowView: RainbowLineView = {
+        let rainbowView = RainbowLineView(width: view.bounds.width, colors: rainbowLineColors)
+        rainbowView.translatesAutoresizingMaskIntoConstraints = false
+        return rainbowView
+    }()
+    
     var locationManager: CLLocationManager = .init()
     
     var presenter: CurrentWeatherPresenter!
@@ -35,6 +43,7 @@ extension CurrentWeatherController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CurrentWeatherConfiguratorImpl().configure(self)
+        setupRainbowLine()
         setupSeparatorLines()
         setupLocationManager()
         presenter.viewDidLoad()
@@ -43,8 +52,29 @@ extension CurrentWeatherController {
     
 }
 
+// MARK: UIViewController Rotation
+extension CurrentWeatherController {
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        rainbowView.reset()
+        rainbowView.setup(width: size.width, colors: rainbowLineColors)
+    }
+    
+}
+
 // MARK: Setup
 extension CurrentWeatherController {
+    
+    private func setupRainbowLine() {
+        view.addSubview(rainbowView)
+        NSLayoutConstraint.activate([
+            rainbowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 2),
+            rainbowView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            rainbowView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            rainbowView.heightAnchor.constraint(equalToConstant: 1)
+        ])
+    }
     
     private func setupSeparatorLines() {
         drawDottedLine(

@@ -13,6 +13,14 @@ class ForecastController: UIViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var tableView: UITableView!
     
+    private let rainbowLineColors: [UIColor] = [.purple, .orange, .green, .blue, .yellow, .red]
+    
+    private lazy var rainbowView: RainbowLineView = {
+        let rainbowView = RainbowLineView(width: view.bounds.width, colors: rainbowLineColors)
+        rainbowView.translatesAutoresizingMaskIntoConstraints = false
+        return rainbowView
+    }()
+    
     var locationManager: CLLocationManager = .init()
     
     var presenter: ForecastPresenter!
@@ -25,11 +33,38 @@ extension ForecastController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ForecastConfiguratorImpl().configure(self)
+        setupRainbowLine()
         tableView.estimatedSectionHeaderHeight = 54
         tableView.register(UINib(nibName: "ForecastCell", bundle: nil), forCellReuseIdentifier: ForecastCell.reuseIdentifier)
         tableView.register(UINib(nibName: "TitleHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: TitleHeaderView.reuseIdentifier)
         setupLocationManager()
         presenter.viewDidLoad()
+    }
+    
+}
+
+// MARK: UIViewController Rotation
+extension ForecastController {
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        rainbowView.reset()
+        rainbowView.setup(width: size.width, colors: rainbowLineColors)
+    }
+    
+}
+
+// MARK: Setup
+extension ForecastController {
+    
+    private func setupRainbowLine() {
+        view.addSubview(rainbowView)
+        NSLayoutConstraint.activate([
+            rainbowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 2),
+            rainbowView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            rainbowView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            rainbowView.heightAnchor.constraint(equalToConstant: 1)
+        ])
     }
     
 }

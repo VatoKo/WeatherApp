@@ -39,6 +39,7 @@
 		1191C63226CE873A00FD57FB /* WeatherIconGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C63126CE873A00FD57FB /* WeatherIconGateway.swift */; };
 		1191C63526CE880800FD57FB /* WeatherIconUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C63426CE880800FD57FB /* WeatherIconUseCase.swift */; };
 		1191C63826CEC1CE00FD57FB /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C63726CEC1CE00FD57FB /* DoubleExtensions.swift */; };
+		1191C63D26D0115700FD57FB /* RainbowLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C63C26D0115700FD57FB /* RainbowLineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		1191C63126CE873A00FD57FB /* WeatherIconGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconGateway.swift; sourceTree = "<group>"; };
 		1191C63426CE880800FD57FB /* WeatherIconUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconUseCase.swift; sourceTree = "<group>"; };
 		1191C63726CEC1CE00FD57FB /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
+		1191C63C26D0115700FD57FB /* RainbowLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowLineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				1191C5B526CBC1D500FD57FB /* App */,
+				1191C63A26D0112E00FD57FB /* Components */,
 				1191C5B726CBC24100FD57FB /* Scenes */,
 				1191C5B826CBC25300FD57FB /* Core */,
 				1191C5E926CBDF7500FD57FB /* Network */,
@@ -273,6 +276,22 @@
 			path = TitleHeader;
 			sourceTree = "<group>";
 		};
+		1191C63A26D0112E00FD57FB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1191C63B26D0114600FD57FB /* RainbowLineView */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1191C63B26D0114600FD57FB /* RainbowLineView */ = {
+			isa = PBXGroup;
+			children = (
+				1191C63C26D0115700FD57FB /* RainbowLineView.swift */,
+			);
+			path = RainbowLineView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -346,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1191C5C326CBC3AB00FD57FB /* CurrentWeatherConfigurator.swift in Sources */,
+				1191C63D26D0115700FD57FB /* RainbowLineView.swift in Sources */,
 				1191C5D526CBD2BE00FD57FB /* CellConfiguration.swift in Sources */,
 				1191C5CC26CBC3B500FD57FB /* ForecastController.swift in Sources */,
 				1191C61726CD526D00FD57FB /* LocationAccessible.swift in Sources */,
