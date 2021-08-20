@@ -90,7 +90,7 @@
                                         <rect key="frame" x="0.0" y="227.99999999999994" width="312" height="166.33333333333331"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="g6a-Uk-b5E">
-                                                <rect key="frame" x="11.333333333333336" y="8" width="40" height="68.333333333333329"/>
+                                                <rect key="frame" x="11.333333333333336" y="16" width="40" height="68.333333333333329"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.hail.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RcU-Lz-6yt">
                                                         <rect key="frame" x="0.0" y="0.66666666666666785" width="40" height="41"/>
@@ -109,7 +109,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uGh-43-o0f">
-                                                <rect key="frame" x="136" y="8" width="40" height="68.333333333333329"/>
+                                                <rect key="frame" x="136" y="16" width="40" height="68.333333333333329"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drop.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wN9-bR-qW4">
                                                         <rect key="frame" x="0.0" y="0.66666666666666785" width="40" height="38.666666666666664"/>
@@ -128,7 +128,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hUV-nS-reO">
-                                                <rect key="frame" x="260.66666666666669" y="8" width="40" height="68.333333333333329"/>
+                                                <rect key="frame" x="260.66666666666669" y="16" width="40" height="68.333333333333329"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speedometer" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JRU-vO-af0">
                                                         <rect key="frame" x="0.0" y="1" width="40" height="38.666666666666671"/>
@@ -147,7 +147,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TXN-hr-Hkf">
-                                                <rect key="frame" x="73.666666666666671" y="80" width="40" height="78.333333333333314"/>
+                                                <rect key="frame" x="73.666666666666671" y="80" width="40" height="70.333333333333314"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-iY-1Wa">
                                                         <rect key="frame" x="0.0" y="2.3333333333333321" width="40" height="36.666666666666671"/>
@@ -158,7 +158,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZu-fd-2Qv">
-                                                        <rect key="frame" x="15.999999999999984" y="48.000000000000057" width="7.6666666666666661" height="30.333333333333329"/>
+                                                        <rect key="frame" x="15.999999999999984" y="48.000000000000057" width="7.6666666666666661" height="22.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -184,23 +184,41 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nhF-Jy-P3g">
+                                                <rect key="frame" x="56" y="0.0" width="200" height="1"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="461-sI-Bcu"/>
+                                                    <constraint firstAttribute="width" constant="200" id="m4u-ph-CEu"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psH-Za-KYz" userLabel="Bottom Separator Line">
+                                                <rect key="frame" x="56" y="165.33333333333331" width="200" height="1"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="C1D-xZ-qVx"/>
+                                                    <constraint firstAttribute="height" constant="1" id="PgW-0x-vAf"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="uGh-43-o0f" firstAttribute="centerX" secondItem="ag0-Da-arn" secondAttribute="centerX" id="88t-Be-IBO"/>
+                                            <constraint firstItem="nhF-Jy-P3g" firstAttribute="top" secondItem="ag0-Da-arn" secondAttribute="top" id="8RO-EM-wV4"/>
                                             <constraint firstItem="TXN-hr-Hkf" firstAttribute="centerX" secondItem="ag0-Da-arn" secondAttribute="centerX" multiplier="0.6" id="9PY-GA-g1t"/>
-                                            <constraint firstItem="g6a-Uk-b5E" firstAttribute="top" secondItem="ag0-Da-arn" secondAttribute="top" constant="8" id="9yy-dY-cNe"/>
+                                            <constraint firstItem="g6a-Uk-b5E" firstAttribute="top" secondItem="ag0-Da-arn" secondAttribute="top" constant="16" id="9yy-dY-cNe"/>
                                             <constraint firstItem="TXN-hr-Hkf" firstAttribute="top" secondItem="ag0-Da-arn" secondAttribute="top" constant="80" id="Fkj-rE-Owx">
-                                                <variation key="heightClass=compact-widthClass=compact" constant="8"/>
+                                                <variation key="heightClass=compact-widthClass=compact" constant="16"/>
                                             </constraint>
-                                            <constraint firstItem="uGh-43-o0f" firstAttribute="top" secondItem="ag0-Da-arn" secondAttribute="top" constant="8" id="b2s-Le-at4"/>
+                                            <constraint firstAttribute="bottom" secondItem="psH-Za-KYz" secondAttribute="bottom" id="Qpz-eH-jlc"/>
+                                            <constraint firstItem="uGh-43-o0f" firstAttribute="top" secondItem="ag0-Da-arn" secondAttribute="top" constant="16" id="b2s-Le-at4"/>
                                             <constraint firstItem="g6a-Uk-b5E" firstAttribute="centerX" secondItem="ag0-Da-arn" secondAttribute="centerX" multiplier="0.2" id="b3i-8Z-WHU"/>
                                             <constraint firstItem="Cho-mL-bal" firstAttribute="top" secondItem="ag0-Da-arn" secondAttribute="top" constant="80" id="cuR-Vh-Kjh">
-                                                <variation key="heightClass=compact-widthClass=compact" constant="8"/>
+                                                <variation key="heightClass=compact-widthClass=compact" constant="16"/>
                                             </constraint>
+                                            <constraint firstItem="psH-Za-KYz" firstAttribute="centerX" secondItem="ag0-Da-arn" secondAttribute="centerX" id="nK3-ed-Yna"/>
                                             <constraint firstItem="hUV-nS-reO" firstAttribute="centerX" secondItem="ag0-Da-arn" secondAttribute="centerX" multiplier="1.8" id="sde-Pp-0fh"/>
-                                            <constraint firstItem="hUV-nS-reO" firstAttribute="top" secondItem="ag0-Da-arn" secondAttribute="top" constant="8" id="vpc-yb-dka"/>
+                                            <constraint firstItem="hUV-nS-reO" firstAttribute="top" secondItem="ag0-Da-arn" secondAttribute="top" constant="16" id="vpc-yb-dka"/>
+                                            <constraint firstItem="nhF-Jy-P3g" firstAttribute="centerX" secondItem="ag0-Da-arn" secondAttribute="centerX" id="x84-oW-ce9"/>
                                             <constraint firstItem="Cho-mL-bal" firstAttribute="centerX" secondItem="ag0-Da-arn" secondAttribute="centerX" multiplier="1.4" id="xZt-hI-yo1"/>
-                                            <constraint firstAttribute="bottom" secondItem="TXN-hr-Hkf" secondAttribute="bottom" constant="8" id="zoz-fn-qcg"/>
+                                            <constraint firstAttribute="bottom" secondItem="TXN-hr-Hkf" secondAttribute="bottom" constant="16" id="zoz-fn-qcg"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNM-P8-CZX">
@@ -232,12 +250,14 @@
                     <navigationItem key="navigationItem" title="Today" id="QzJ-h6-Ks6"/>
                     <connections>
                         <outlet property="activityIndicator" destination="AvZ-Tl-Vw7" id="7jD-ZJ-PQ9"/>
+                        <outlet property="bottomSeparatorLine" destination="psH-Za-KYz" id="aqX-Tt-zEk"/>
                         <outlet property="cloudPercentageLabel" destination="m5e-qg-oe2" id="Ajw-y6-e2y"/>
                         <outlet property="contentContainerStack" destination="JwE-c7-QAg" id="GWS-3e-wBh"/>
                         <outlet property="humidityLabel" destination="ROU-tL-SFE" id="TLo-kq-P7M"/>
                         <outlet property="locationNameLabel" destination="Dj6-Ky-54o" id="Rbg-c2-FlT"/>
                         <outlet property="pressureLabel" destination="ip4-Hz-cK5" id="iLr-e3-gNq"/>
                         <outlet property="temperatureDescriptionLabel" destination="WSk-sN-EPp" id="rFW-ax-anA"/>
+                        <outlet property="topSeparatorLine" destination="nhF-Jy-P3g" id="PuH-dL-Ado"/>
                         <outlet property="weatherIcon" destination="Mq3-oj-QzD" id="lBr-9T-8Qj"/>
                         <outlet property="windDirectionLabel" destination="3Td-lT-mJ2" id="urT-aF-3so"/>
                         <outlet property="windSpeedLabel" destination="SZu-fd-2Qv" id="7Qy-nm-Sxf"/>
